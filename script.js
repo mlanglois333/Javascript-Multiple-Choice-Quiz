@@ -1,6 +1,9 @@
 var mainBody = document.getElementById("#main");
 var timerDisp = document.getElementById("#timer");
 var scoreDisp = document.getElementById("#score");
+var startBtn = document.getElementById("#startQuiz");
+var currentScore = 0;
+var currentTime = 0;
 var questions = [
     { 
         question: "q1",
@@ -53,7 +56,7 @@ var questions = [
         correct: "a"
     },
 ]
-
+startBtn.addEventListener("click", timer(180, timerDisp)),
 
 function quiz() {
 
