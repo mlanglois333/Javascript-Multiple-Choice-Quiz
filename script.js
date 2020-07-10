@@ -1,6 +1,59 @@
 var mainBody = document.getElementById("#main");
 var timerDisp = document.getElementById("#timer");
 var scoreDisp = document.getElementById("#score");
+var questions = [
+    { 
+        question: "q1",
+        answers: {
+            a: "a",
+            b: "b",
+            c: "c",
+            b: "d",
+        },
+        correct: "a"
+    },
+    { 
+        question: "q2",
+        answers: {
+            a: "a",
+            b: "b",
+            c: "c",
+            b: "d",
+        },
+        correct: "a"
+    },
+    { 
+        question: "q3",
+        answers: {
+            a: "a",
+            b: "b",
+            c: "c",
+            b: "d",
+        },
+        correct: "a"
+    },
+    { 
+        question: "q4",
+        answers: {
+            a: "a",
+            b: "b",
+            c: "c",
+            b: "d",
+        },
+        correct: "a"
+    },
+    { 
+        question: "q5",
+        answers: {
+            a: "a",
+            b: "b",
+            c: "c",
+            b: "d",
+        },
+        correct: "a"
+    },
+]
+
 
 function quiz() {
 
