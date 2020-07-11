@@ -1,18 +1,19 @@
-var mainBody = document.getElementById("#main");
-var timerDisp = document.getElementById("#timer");
-var scoreDisp = document.getElementById("#score");
-var startBtn = document.getElementById("#startQuiz");
-var questions = document.getElementById("questions");
-var answers = document.getElementById("answers");
-var answerA = document.getElementById("A");
-var answerB = document.getElementById("B");
-var answerC = document.getElementById("C");
-var answerD = document.getElementById("D");
+var mainBody = document.querySelector("#main");
+var timerDisp = document.querySelector("#timer");
+var scoreDisp = document.querySelector("#score");
+var startBtn = document.querySelector("#startQuiz");
+var questions = document.querySelector("questions");
+var answers = document.querySelector("answers");
+var answerA = document.querySelector("A");
+var answerB = document.querySelector("B");
+var answerC = document.querySelector("C");
+var answerD = document.querySelector("D");
 
 
 
-var currentScore = 0;
-var currentTime = 0;
+
+var startTime = 3;
+
 var questions = [
     { 
         question: "q1",
@@ -70,34 +71,40 @@ function quiz() {
 
 
 
-};
+}
+
+
+function score() {
+
+
+    scoreDisp.textContent = secondsRemaining;
+    if (secondsRemaining = 0) {alert("times up");}
+
+
+}
+
+function timer() {
+
+ 
+
+let secondsRemaining = 3;
+setInterval(function() {
+if (secondsRemaining > 0) { 
+    timerDisp.textContent = secondsRemaining; 
+    secondsRemaining--;}
+    else {return}
+},
+    1000); 
 
 
 
-
-
-
-
-function timer (duration, display) {
-
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            timer = duration;
-        }
-    }, 1000);
 }
 
 
 
+
+
+timer();
 
 
 
