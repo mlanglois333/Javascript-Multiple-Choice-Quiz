@@ -2,6 +2,15 @@ var mainBody = document.getElementById("#main");
 var timerDisp = document.getElementById("#timer");
 var scoreDisp = document.getElementById("#score");
 var startBtn = document.getElementById("#startQuiz");
+var questions = document.getElementById("questions");
+var answers = document.getElementById("answers");
+var answerA = document.getElementById("A");
+var answerB = document.getElementById("B");
+var answerC = document.getElementById("C");
+var answerD = document.getElementById("D");
+
+
+
 var currentScore = 0;
 var currentTime = 0;
 var questions = [
@@ -54,15 +63,19 @@ var questions = [
             b: "d",
         },
         correct: "a"
-    },
-]
-startBtn.addEventListener("click", timer(180, timerDisp)),
+    }
+];
 
 function quiz() {
 
 
 
-}
+};
+
+
+
+
+
 
 
 function timer (duration, display) {
@@ -83,11 +96,7 @@ function timer (duration, display) {
     }, 1000);
 }
 
-//window.onload = function () {
-  //  var threeMinutes = 60 * 3,
-    //    display = timerDisp;
-    //startTimer(threeMinutes, display);
-//};
+
 
 
 
