@@ -9,11 +9,6 @@ var answerB = document.querySelector("B");
 var answerC = document.querySelector("C");
 var answerD = document.querySelector("D");
 
-
-
-
-var startTime = 3;
-
 var questions = [
     { 
         question: "q1",
@@ -77,8 +72,6 @@ function quiz() {
 function score() {
 
 
-    scoreDisp.textContent = secondsRemaining;
-    if (secondsRemaining = 0) {alert("times up");}
 
 
 }
@@ -87,7 +80,7 @@ function timer() {
 
  
 
-let secondsRemaining = 3;
+let secondsRemaining = 60;
 setInterval(function() {
 if (secondsRemaining > 0) { 
     timerDisp.textContent = secondsRemaining; 
@@ -104,7 +97,7 @@ if (secondsRemaining > 0) {
 
 
 
-timer();
+startBtn.addEventListener("click", timer());
 
 
 
