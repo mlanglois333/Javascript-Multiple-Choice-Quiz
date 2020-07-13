@@ -69,10 +69,10 @@ function quiz() {
 
     let qu = questions[indexNo];
     questionEl.innerHTML = "<p>" + qu.question + "</p>";
-    answerA.innerHTML = "<p>" +qu.a + "</p>";
-    answerB.innerHTML = "<p>" +qu.b + "</p>";
-    answerC.innerHTML = "<p>" +qu.c + "</p>";
-    answerD.innerHTML = "<p>" +qu.d + "</p>";
+    answerA.innerHTML = "<button>" +qu.a + "</button>";
+    answerB.innerHTML = "<button>" +qu.b + "</button>";
+    answerC.innerHTML = "<button>" +qu.c + "</button>";
+    answerD.innerHTML = "<button>" +qu.d + "</button>";
 
     console.log("quiz");
 }
