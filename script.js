@@ -1,7 +1,7 @@
-var mainBody = document.querySelector("#main");
-var timerDisp = document.querySelector("#timer");
-var scoreDisp = document.querySelector("#score");
-var startBtn = document.querySelector("#startQuiz");
+var mainBody = document.getElementById("main");
+var timerDisp = document.getElementById("timer");
+var scoreDisp = document.getElementById("score");
+var strtBtn = document.getElementById("strtBtn");
 var questionEl = document.getElementById("questions");
 var answers = document.getElementById("answers");
 var answerA = document.getElementById("a");
@@ -9,6 +9,8 @@ var answerB = document.getElementById("b");
 var answerC = document.getElementById("c");
 var answerD = document.getElementById("d");
 let indexNo = 0;
+let secondsRemaining = 60;
+let score = 60;
 var questions = [
     { 
         question: "q1",
@@ -72,28 +74,22 @@ function quiz() {
     answerC.innerHTML = "<p>" +qu.c + "</p>";
     answerD.innerHTML = "<p>" +qu.d + "</p>";
 
+    console.log("quiz");
 }
 
 function nextQ(){
 
     indexNo++;
     quiz();
-
+    console.log("next");
 }
 
-
-function score() {
-
-
-
-
-}
 
 function timer() {
 
  
 
-let secondsRemaining = 60;
+
 setInterval(function() {
 if (secondsRemaining > 0) { 
     timerDisp.textContent = secondsRemaining; 
@@ -101,13 +97,49 @@ if (secondsRemaining > 0) {
     else {return}
 },
     1000); 
-
-
-
+    console.log("timer");
 }
 
 
+function checkA(){
+    if (questions[indexNo].correct === "a") {
+        nextQ();
+    }
+    else {score = score - 10;}
+    console.log("a");
+}
+
+function checkB(){
+        if (questions[indexNo].correct === "b") {
+            nextQ();
+        }
+        else if (questions[indexNo].correct != "b") {score = score - 10;}
+        console.log("b");
+    }
+
+function checkC(){
+            if (questions[indexNo].correct === "c") {
+                nextQ();
+            }
+        
+            else {score = score - 10;}
+ console.log("c");       }
+        
+function checkD(){
+                if (questions[indexNo].correct === "d") {
+                    nextQ();
+                }
+                else {score = score - 10; displaySc();} console.log("d");
+            }
+   
+function displaySc(){
+            scoreDisp.innerHTML = "<p>" + score + "</p>";}
 
 
-quiz();
 
+strtBtn.addEventListener("click", function(){quiz()});
+strtBtn.addEventListener("click", function(){timer()});
+answerA.addEventListener("click", function(){checkA()});
+answerB.addEventListener("click", function(){checkB()});
+answerC.addEventListener("click", function(){checkC()});
+answerD.addEventListener("click", function(){checkD()});
