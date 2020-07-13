@@ -63,7 +63,7 @@ var questions = [
         correct: "a"
     }
 ];
-let arrLength = questions.length ;
+let arrLength = questions.length - 1 ;
 
 function quiz() {
 
@@ -102,34 +102,36 @@ if (secondsRemaining > 0) {
 
 
 function checkA(){
-    if (questions[indexNo].correct === "a") {
+    if (questions[indexNo].correct === "a" && indexNo < arrLength ) {
         nextQ();
     }
-    else {score = score - 10;}
+    else if (questions[indexNo].correct != "a") {score = score - 10;displaySc();}
+    else {console.log("end display");}
     console.log("a");
+    
 }
 
 function checkB(){
-        if (questions[indexNo].correct === "b") {
+        if (questions[indexNo].correct === "b" && indexNo < arrLength ) {
             nextQ();
         }
-        else if (questions[indexNo].correct != "b") {score = score - 10;}
+        else if (questions[indexNo].correct != "b") {score = score - 10;displaySc();}
         console.log("b");
     }
 
 function checkC(){
-            if (questions[indexNo].correct === "c") {
+            if (questions[indexNo].correct === "c" && indexNo < arrLength ) {
                 nextQ();
             }
         
-            else {score = score - 10;}
+            else if (questions[indexNo].correct != "c") {score = score - 10;displaySc();}
  console.log("c");       }
         
 function checkD(){
-                if (questions[indexNo].correct === "d") {
+                if (questions[indexNo].correct === "d" && indexNo < arrLength ) {
                     nextQ();
                 }
-                else {score = score - 10; displaySc();} console.log("d");
+                else if (questions[indexNo].correct != "d") {score = score - 10;displaySc();}
             }
    
 function displaySc(){
