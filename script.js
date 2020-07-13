@@ -116,6 +116,7 @@ function checkB(){
             nextQ();
         }
         else if (questions[indexNo].correct != "b") {score = score - 10;displaySc();}
+        else {console.log("end display");}
         console.log("b");
     }
 
@@ -125,6 +126,7 @@ function checkC(){
             }
         
             else if (questions[indexNo].correct != "c") {score = score - 10;displaySc();}
+            else {console.log("end display");}
  console.log("c");       }
         
 function checkD(){
@@ -132,6 +134,7 @@ function checkD(){
                     nextQ();
                 }
                 else if (questions[indexNo].correct != "d") {score = score - 10;displaySc();}
+                else {console.log("end display");}
             }
    
 function displaySc(){
