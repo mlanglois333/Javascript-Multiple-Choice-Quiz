@@ -9,6 +9,9 @@ var answerB = document.getElementById("b");
 var answerC = document.getElementById("c");
 var answerD = document.getElementById("d");
 var scoreBoard = document.getElementById("scoreBoard");
+var scoreTitle = document.getElementById("scoreTitle");
+var scoreContent = document.getElementById("scoreContent");
+let highScore = [];
 let indexNo = 0;
 let secondsRemaining = 60;
 let score = 60;
@@ -73,32 +76,39 @@ let arrLength = questions.length - 1 ;
 
 function endScrn() {  
  
-var highScore = [];
+
+var scoreLength = highScore.length;
+var scoreIndex = 0;
 
 var initials = prompt("Enter your initals");
-var addScr = initials + "  " + score;
+var addScr = initials + " -- " + score;
+
+function renderScore(){
+
+    for (i = 0; i <= scoreLength; i++) {
+ scoreContent.append(highScore[i]);}
+ 
+}
+
+
+
+
+
 highScore.push(addScr);
-alert(highScore);
-
-
-function replay() {
-var tryAg = confirm("Try again?");
-if (tryAg === true) {restart();}
-else {alert("Thank you for playing!");
+renderScore();
 clear();
-startAppear();}
+console.log(highScore);
+strtBtn.innerHTML="<button> Click to start!</button";
+    strtBtn.addEventListener("click", function(){replay()});
+    
+
+
 
 
 }
-replay();
-}
-
-
-
-
-
 
 function quiz() {
+    scoreContent.innerHTML = "";
     strtBtn.innerHTML="";
     let qu = questions[indexNo];
     questionEl.innerHTML = "<p>" + qu.question + "</p>";
@@ -190,6 +200,8 @@ function checkD(){
 function displaySc(){
             scoreDisp.innerHTML = "<p> current score: " + score + "</p>";}
 
+
+
      function clear(){
          indexNo= 0;
                 secondsRemaining = 60;
@@ -200,7 +212,17 @@ function displaySc(){
                 answerC.innerHTML = "";
                 answerD.innerHTML = "";
                 console.log(clear);
+                
             }
+
+            function replay() {
+                var tryAg = confirm("Try again?");
+                if (tryAg === true) {restart();}
+                else {alert("Thank you for playing!");
+                }
+                
+                
+                }
             
 function restart(){
     clear();
