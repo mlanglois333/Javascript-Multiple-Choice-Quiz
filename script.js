@@ -65,6 +65,10 @@ var questions = [
 ];
 let arrLength = questions.length - 1 ;
 
+function endScrn() {
+    mainBody.innerHTML = "<h1> Your score is " + score + "</h1> <br> <form> <h2> Enter your name: </h2>";
+}
+
 function quiz() {
 
     let qu = questions[indexNo];
@@ -101,12 +105,13 @@ if (secondsRemaining > 0) {
 }
 
 
+
 function checkA(){
     if (questions[indexNo].correct === "a" && indexNo < arrLength ) {
         nextQ();
     }
     else if (questions[indexNo].correct != "a") {score = score - 10;displaySc();}
-    else {console.log("end display");}
+    else {endScrn(); console.log("end display");}
     console.log("a");
     
 }
@@ -116,7 +121,7 @@ function checkB(){
             nextQ();
         }
         else if (questions[indexNo].correct != "b") {score = score - 10;displaySc();}
-        else {console.log("end display");}
+        else {endScrn(); console.log("end display");}
         console.log("b");
     }
 
@@ -126,7 +131,7 @@ function checkC(){
             }
         
             else if (questions[indexNo].correct != "c") {score = score - 10;displaySc();}
-            else {console.log("end display");}
+            else {endScrn(); console.log("end display");}
  console.log("c");       }
         
 function checkD(){
@@ -134,11 +139,12 @@ function checkD(){
                     nextQ();
                 }
                 else if (questions[indexNo].correct != "d") {score = score - 10;displaySc();}
-                else {console.log("end display");}
+                else {endScrn(); console.log("end display");}
             }
    
 function displaySc(){
             scoreDisp.innerHTML = "<p>" + score + "</p>";}
+
 
 
 

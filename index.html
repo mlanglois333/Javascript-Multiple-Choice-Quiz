@@ -4,32 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>Javascript Quiz</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Javascript Quiz</h1>
-  <div id="start">
+    <div class="jumbotron">
+    <h1 class="text-center">Javascript Quiz</h1>
+  <div class="text-center" id="start">
     <button id="strtBtn">Start</button>
   </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+<div id="score"></div>
+</div>
+<div class="col-3">
+        <div id="timer"> Seconds left</div>
+</div>
   </div>
+
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2">
+
     <div id = "main">
-        <div id="questions"></div>
-        <div id="answers">
+      
+        <div class="card-header" id="questions"></div>
+        <div class="card-body text-center" id="answers">
             <div class="answer" id="a"></div>
             <div class="answer" id="b"></div>
             <div class="answer" id="c"></div>
             <div class="answer" id="d"></div>
         </div>
-        <div id="score"></div>
-        <div id="timer"> Seconds left</div>
+        </div>
     
     
     </div>
+</div>
 
+   
 
-    
+</div>
+</div>
 
     
 
