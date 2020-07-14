@@ -143,7 +143,12 @@ setInterval(function() {
 if (secondsRemaining > 0) { 
     timerDisp.textContent = secondsRemaining + " seconds remaining"; 
     secondsRemaining--;}
-    else {return}
+    else {
+        alert("Time is up, you lose :(");
+        replay();
+
+    
+    }
 },
     1000); 
     console.log("timer");
