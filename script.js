@@ -14,7 +14,7 @@ var scoreContent = document.getElementById("scoreContent");
 let highScore = [];
 let indexNo = 0;
 let secondsRemaining = 60;
-let score = 60;
+
 var questions = [
     { 
         question: "q1",
@@ -76,9 +76,9 @@ let arrLength = questions.length - 1 ;
 
 function endScrn() {  
  
-
+ var score = secondsRemaining;
 var scoreLength = highScore.length;
-var scoreIndex = 0;
+
 
 var initials = prompt("Enter your initals");
 var addScr = initials + " -- " + score;
@@ -116,7 +116,7 @@ function quiz() {
     answerB.innerHTML = "<button>" +qu.b + "</button>";
     answerC.innerHTML = "<button>" +qu.c + "</button>";
     answerD.innerHTML = "<button>" +qu.d + "</button>";
-    displaySc();
+    
     console.log("quiz");
 }
 
@@ -158,7 +158,7 @@ function checkA(){
     if (questions[indexNo].correct === "a" && indexNo < arrLength ) {
         nextQ();
     }
-    else if (questions[indexNo].correct != "a") {score = score - 10;displaySc();}
+    else if (questions[indexNo].correct != "a") {secondsRemaining = secondsRemaining-10;}
     else {endScrn(); 
         
         console.log("end display");}
@@ -170,7 +170,7 @@ function checkB(){
         if (questions[indexNo].correct === "b" && indexNo < arrLength ) {
             nextQ();
         }
-        else if (questions[indexNo].correct != "b") {score = score - 10;displaySc();}
+        else if (questions[indexNo].correct != "b") {secondsRemaining = secondsRemaining-10;}
         else {endScrn(); console.log("end display");}
         console.log("b");
     }
@@ -180,7 +180,7 @@ function checkC(){
                 nextQ();
             }
         
-            else if (questions[indexNo].correct != "c") {score = score - 10;displaySc();}
+            else if (questions[indexNo].correct != "c") {secondsRemaining = secondsRemaining - 10;}
             else {endScrn(); console.log("end display");}
  console.log("c");       }
         
@@ -188,7 +188,7 @@ function checkD(){
                 if (questions[indexNo].correct === "d" && indexNo < arrLength ) {
                     nextQ();
                 }
-                else if (questions[indexNo].correct != "d") {score = score - 10;displaySc();}
+                else if (questions[indexNo].correct != "d") {secondsRemaining = secondsRemaining - 10;}
                 else {endScrn();
                     console.log("end display");}
             }
