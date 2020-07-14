@@ -8,6 +8,7 @@ var answerA = document.getElementById("a");
 var answerB = document.getElementById("b");
 var answerC = document.getElementById("c");
 var answerD = document.getElementById("d");
+var scoreBoard = document.getElementById("scoreBoard");
 let indexNo = 0;
 let secondsRemaining = 60;
 let score = 60;
@@ -65,16 +66,35 @@ var questions = [
 ];
 let arrLength = questions.length - 1 ;
 
+
+
+
+
+
 function endScrn() {  
  
 var highScore = [];
 
 var initials = prompt("Enter your initals");
+var addScr = initials + "  " + score;
+highScore.push(addScr);
+alert(highScore);
 
-highScore.push(initials);
-mainBody.innerHTML=highScore;
+
+function replay() {
+var tryAg = confirm("Try again?");
+if (tryAg === true) {restart();}
+else {alert("Thank you for playing!");}
+
 
 }
+replay();
+}
+
+
+
+
+
 
 function quiz() {
 
@@ -84,9 +104,12 @@ function quiz() {
     answerB.innerHTML = "<button>" +qu.b + "</button>";
     answerC.innerHTML = "<button>" +qu.c + "</button>";
     answerD.innerHTML = "<button>" +qu.d + "</button>";
-
+    displaySc();
     console.log("quiz");
 }
+
+
+
 
 function nextQ(){
 
@@ -101,9 +124,12 @@ function timer() {
  
 
 
+
+
+
 setInterval(function() {
 if (secondsRemaining > 0) { 
-    timerDisp.textContent = secondsRemaining; 
+    timerDisp.textContent = secondsRemaining + " seconds remaining"; 
     secondsRemaining--;}
     else {return}
 },
@@ -113,12 +139,17 @@ if (secondsRemaining > 0) {
 
 
 
+
+
+
 function checkA(){
     if (questions[indexNo].correct === "a" && indexNo < arrLength ) {
         nextQ();
     }
     else if (questions[indexNo].correct != "a") {score = score - 10;displaySc();}
-    else {endScrn(); console.log("end display");}
+    else {endScrn(); 
+        
+        console.log("end display");}
     console.log("a");
     
 }
@@ -146,11 +177,33 @@ function checkD(){
                     nextQ();
                 }
                 else if (questions[indexNo].correct != "d") {score = score - 10;displaySc();}
-                else {endScrn(); console.log("end display");}
+                else {endScrn();
+                    console.log("end display");}
             }
    
+
+
+
+
 function displaySc(){
-            scoreDisp.innerHTML = "<p>" + score + "</p>";}
+            scoreDisp.innerHTML = "<p> current score: " + score + "</p>";}
+
+     function clear(){
+         indexNo= 0;
+                secondsRemaining = 60;
+                score = 60;
+                questionEl.innerHTML = "";
+                answerA.innerHTML = "";
+                answerB.innerHTML = "";
+                answerC.innerHTML = "";
+                answerD.innerHTML = "";
+                console.log(clear);
+            }
+            
+function restart(){
+    clear();
+    quiz();
+}
 
 
 
