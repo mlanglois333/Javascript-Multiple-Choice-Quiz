@@ -84,7 +84,9 @@ alert(highScore);
 function replay() {
 var tryAg = confirm("Try again?");
 if (tryAg === true) {restart();}
-else {alert("Thank you for playing!");}
+else {alert("Thank you for playing!");
+clear();
+startAppear();}
 
 
 }
@@ -97,7 +99,7 @@ replay();
 
 
 function quiz() {
-
+    strtBtn.innerHTML="";
     let qu = questions[indexNo];
     questionEl.innerHTML = "<p>" + qu.question + "</p>";
     answerA.innerHTML = "<button>" +qu.a + "</button>";
@@ -205,12 +207,16 @@ function restart(){
     quiz();
 }
 
+function startAppear(){
+    strtBtn.innerHTML="<button> Click to start!</button";
+    strtBtn.addEventListener("click", function(){quiz()});
+    strtBtn.addEventListener("click", function(){timer()});
+}
 
 
 
-strtBtn.addEventListener("click", function(){quiz()});
-strtBtn.addEventListener("click", function(){timer()});
 answerA.addEventListener("click", function(){checkA()});
 answerB.addEventListener("click", function(){checkB()});
 answerC.addEventListener("click", function(){checkC()});
 answerD.addEventListener("click", function(){checkD()});
+window.onload= startAppear();
