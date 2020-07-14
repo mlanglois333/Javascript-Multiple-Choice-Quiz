@@ -65,8 +65,15 @@ var questions = [
 ];
 let arrLength = questions.length - 1 ;
 
-function endScrn() {
-    mainBody.innerHTML = "<h1> Your score is " + score + "</h1> <br> <form> <h2> Enter your name: </h2>";
+function endScrn() {  
+ 
+var highScore = [];
+
+var initials = prompt("Enter your initals");
+
+highScore.push(initials);
+mainBody.innerHTML=highScore;
+
 }
 
 function quiz() {
