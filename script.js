@@ -11,9 +11,10 @@ var answerD = document.getElementById("d");
 var scoreBoard = document.getElementById("scoreBoard");
 var formEl = document.getElementById("formEl");
 var scoreContent = document.getElementById("scoreContent");
+var submitBtn = document.getElementById("submitBtn");
 let highScore = [];
 let indexNo = 0;
-let x = false;
+
 
 var questions = [
     {
@@ -84,7 +85,10 @@ var myTimer;
        --secondsRemaining;
        if (secondsRemaining <= 0) {
          clearInterval(myTimer);
-         alert("Reached zero");
+         alert("Time is up! You LOSE!!");
+         clear();
+         startAppear();
+         
        }
      }
    }  
@@ -121,6 +125,7 @@ function dispOff() {
 function dispOn() {
     formEl.style.visibility = "visible";
     scoreContent.style.visibility = "visible";
+    
 }
 
 function contentOn() {
@@ -130,6 +135,7 @@ function contentOn() {
     answerB.style.visibility = "visible";
     answerC.style.visibility = "visible";
     answerD.style.visibility = "visible";
+    timerDisp.style.visibility = "visible";
 }
 function contentOff() {
 
@@ -138,6 +144,7 @@ function contentOff() {
     answerB.style.visibility = "hidden";
     answerC.style.visibility = "hidden";
     answerD.style.visibility = "hidden";
+    timerDisp.style.visibility = "hidden";
 }
 
 
@@ -155,6 +162,8 @@ function renderScore() {
 
 
     var addScr = initials + " -- " + score;
+
+    
     highScore.push(addScr);
 
 
@@ -224,14 +233,15 @@ clock();
         }
         else if (questions[indexNo].correct != "a") { secondsRemaining = secondsRemaining - 10; }
         else if (questions[indexNo].correct === "a" && indexNo === arrLength) {
-            x = false;
-            console.log(x)
+            
+            
             dispOn();
             clearInterval(myTimer);
+            contentOff();
             return;
 
         }
-        console.log("a");
+       
 
     }
 
@@ -241,7 +251,7 @@ clock();
         }
         else if (questions[indexNo].correct != "b") { secondsRemaining = secondsRemaining - 10; }
         else { endScrn(); console.log("end display"); }
-        console.log("b");
+        
     }
 
     function checkC() {
@@ -251,7 +261,7 @@ clock();
 
         else if (questions[indexNo].correct != "c") { secondsRemaining = secondsRemaining - 10; }
         else { endScrn(); console.log("end display"); }
-        console.log("c");
+        
     }
 
     function checkD() {
@@ -261,17 +271,12 @@ clock();
         else if (questions[indexNo].correct != "d") { secondsRemaining = secondsRemaining - 10; }
         else {
             endScrn();
-            console.log("end display");
+            
 
     
         }
         return;
     }
-
-
-  
-
-
 
 
 
@@ -281,4 +286,3 @@ startAppear();
 dispOff();
 hiOff();
 contentOff();
-
