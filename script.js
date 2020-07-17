@@ -9,11 +9,11 @@ var answerB = document.getElementById("b");
 var answerC = document.getElementById("c");
 var answerD = document.getElementById("d");
 var scoreBoard = document.getElementById("scoreBoard");
-var scoreTitle = document.getElementById("scoreTitle");
+var formEl = document.getElementById("formEl");
 var scoreContent = document.getElementById("scoreContent");
 let highScore = [];
-
-
+let indexNo = 0; 
+let  x = true;
 
 var questions = [
     {
@@ -68,11 +68,42 @@ var questions = [
     }
 ];
 let arrLength = questions.length - 1;
+let secondsRemaining = 60;
+
+
+
+function endScrn() {
+
+    var score = secondsRemaining;
+    var scoreLength = highScore.length;
+
+
+    var initials = prompt("Enter your initals");
+    var addScr = initials + " -- " + score;
+ 
+    function renderScore() {
+
+        for (i = 0; i <= scoreLength; i++) {
+            scoreContent.append(highScore[i]);
+        }
+
+    }
+  
 
 
 
 
+    highScore.push(addScr);
+    renderScore();
+   clear();
+    console.log(highScore);
+startAppear();
+  console.log(secondsRemaining);
 
+
+
+
+}
 
 
 
@@ -103,8 +134,10 @@ function clear() {
 
 function strtQuiz()
  { 
-    let indexNo = 0; 
-    var secondsRemaining = 60;
+
+     
+    
+    secondsRemaining = 60;
     
     var interval = setInterval(function () {
 
@@ -133,7 +166,7 @@ function strtQuiz()
 
      function quiz() {
     
- 
+     
     
     
    
@@ -166,11 +199,13 @@ function strtQuiz()
             nextQ();
         }
         else if (questions[indexNo].correct != "a") { secondsRemaining = secondsRemaining - 10; }
-        else {
+        else if (questions[indexNo].correct === "a" && indexNo === arrLength){
+            x = false;
+            console.log(x)
             endScrn();
             clearInterval(interval);
-    
-            console.log("end display");
+            return;
+         
         }
         console.log("a");
     
@@ -206,63 +241,36 @@ function strtQuiz()
         }
     }
     
-
-    function endScrn() {
-
-        var score = secondsRemaining;
-        var scoreLength = highScore.length;
-    
-    
-        var initials = prompt("Enter your initals");
-        var addScr = initials + " -- " + score;
-     
-        function renderScore() {
-    
-            for (i = 0; i <= scoreLength; i++) {
-                scoreContent.append(highScore[i]);
-            }
-    
-        }
-      
-    
-    
-    
-    
-        highScore.push(addScr);
-        renderScore();
-       clear();
-        console.log(highScore);
-    startAppear();
-      console.log(secondsRemaining);
-    
-    
-    
-    
-    }
-    
-
+function firstEvnt(){
+ 
+    if (x === false) {return}
+else { answerA.addEventListener("click", function () { checkA() });
+answerB.addEventListener("click", function () { checkB() });
+answerC.addEventListener("click", function () { checkC() });
+answerD.addEventListener("click", function () { checkD() });
+x =false;
+}
+}
 
 quiz();
+firstEvnt();
 
 
 
 
 
+    
 
 
 
 
 
-
-    answerA.addEventListener("click", function () { checkA() });
-    answerB.addEventListener("click", function () { checkB() });
-    answerC.addEventListener("click", function () { checkC() });
-    answerD.addEventListener("click", function () { checkD() });
 
 
 
 
 }
+
 
 function startAppear() {
     strtBtn.innerHTML = "<button> Click to start!</button";
@@ -280,4 +288,3 @@ startAppear();
 
 
  strtBtn.addEventListener("click", function () { strtQuiz() });
-startAppear();
