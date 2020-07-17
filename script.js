@@ -120,7 +120,7 @@ function dispOff() {
     formEl.style.visibility = "hidden";}
 
     function hiOff(){
-    scoreContent.style.visibility = "hidden";}
+    scoreContent.innerHTML="";}
 
 function dispOn() {
     formEl.style.visibility = "visible";
@@ -161,15 +161,26 @@ function renderScore() {
 
 
 
-    var addScr = initials + " -- " + score;
+    var addScr = {in:initials,
+        sc: score}
+
+
+
 
     
     highScore.push(addScr);
+if (scoreLength >= 1) {
+    highScore.sort(function(a, b){return b.sc-a.sc});}
 
 
     for (i = 0; i <= scoreLength; i++) {
-        scoreContent.append(highScore[i]);
+        
+        scoreContent.append(highScore[i].in + " score: " + highScore[i].sc);
+        scoreContent.append(document.createElement("br"));
+        
     }
+
+
 dispOff();
 clear();
 startAppear();
