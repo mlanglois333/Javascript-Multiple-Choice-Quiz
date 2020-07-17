@@ -1,0 +1,7 @@
+* {text-align: center;
+}
+
+#timer {font-weight: bolder;}
+#scoreContent {font-weight: bolder}
+.answers {font-style: italic;
+text-decoration-color: darkslategray;}

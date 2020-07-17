@@ -1,6 +1,4 @@
-var mainBody = document.getElementById("main");
 var timerDisp = document.getElementById("timer");
-var scoreDisp = document.getElementById("score");
 var strtBtn = document.getElementById("strtBtn");
 var questionEl = document.getElementById("questions");
 var answers = document.getElementById("answers");
@@ -8,7 +6,6 @@ var answerA = document.getElementById("a");
 var answerB = document.getElementById("b");
 var answerC = document.getElementById("c");
 var answerD = document.getElementById("d");
-var scoreBoard = document.getElementById("scoreBoard");
 var formEl = document.getElementById("formEl");
 var scoreContent = document.getElementById("scoreContent");
 var submitBtn = document.getElementById("submitBtn");
@@ -76,56 +73,55 @@ let secondsRemaining = 60;
 
 
 var myTimer;
-   function clock() {
-     myTimer = setInterval(myClock, 1000);
-     
-
-     function myClock() {
-       timerDisp.innerHTML=secondsRemaining; 
-       --secondsRemaining;
-       if (secondsRemaining <= 0) {
-         clearInterval(myTimer);
-         alert("Time is up! You LOSE!!");
-         clear();
-         startAppear();
-         
-       }
-     }
-   }  
+function clock() {
+    myTimer = setInterval(myClock, 1000);
 
 
+    function myClock() {
+        timerDisp.innerHTML = secondsRemaining;
+        --secondsRemaining;
+        if (secondsRemaining <= 0) {
+            clearInterval(myTimer);
+            alert("Time is up! You LOSE!!");
+            clear();
+            startAppear();
+
+        }
+    }
+}
 
 
 
+function quiz() {
+    let qu = questions[indexNo];
 
-
-function quiz(){
-let qu = questions[indexNo];
-
-questionEl.innerHTML = "<p>" + qu.question + "</p>";
-answerA.innerHTML =  qu.a  ;
-answerB.innerHTML =  qu.b ;
-answerC.innerHTML = qu.c  ;
-answerD.innerHTML = qu.d ;
+    questionEl.innerHTML = "<p>" + qu.question + "</p>";
+    answerA.innerHTML = qu.a;
+    answerB.innerHTML = qu.b;
+    answerC.innerHTML = qu.c;
+    answerD.innerHTML = qu.d;
 }
 
 function startAppear() {
     strtBtn.style.visibility = "visible";
 
 }
-function startOff(){
-strtBtn.style.visibility = "hidden";}
+function startOff() {
+    strtBtn.style.visibility = "hidden";
+}
 
 function dispOff() {
-    formEl.style.visibility = "hidden";}
+    formEl.style.visibility = "hidden";
+}
 
-    function hiOff(){
-    scoreContent.innerHTML="";}
+function hiOff() {
+    scoreContent.innerHTML = "";
+}
 
 function dispOn() {
     formEl.style.visibility = "visible";
     scoreContent.style.visibility = "visible";
-    
+
 }
 
 function contentOn() {
@@ -149,10 +145,6 @@ function contentOff() {
 
 
 
-
-
-
-
 function renderScore() {
 
     var initials = document.getElementById("initials").value;
@@ -161,133 +153,133 @@ function renderScore() {
 
 
 
-    var addScr = {in:initials,
-        sc: score}
-
-
-
-
-    
-    highScore.push(addScr);
-if (scoreLength >= 1) {
-    highScore.sort(function(a, b){return b.sc-a.sc});}
-
-
-    for (i = 0; i <= scoreLength; i++) {
-        
-        scoreContent.append(highScore[i].in + " score: " + highScore[i].sc);
-        scoreContent.append(document.createElement("br"));
-        
+    var addScr = {
+        in: initials,
+        sc: score
     }
 
 
-dispOff();
-clear();
-startAppear();
+    highScore.push(addScr);
+    if (scoreLength >= 1) {
+        highScore.sort(function (a, b) { return b.sc - a.sc });
+    }
+
+
+    for (i = 0; i <= scoreLength; i++) {
+
+        scoreContent.append(highScore[i].in + " score: " + highScore[i].sc);
+        scoreContent.append(document.createElement("br"));
+
+    }
+
+
+    dispOff();
+    clear();
+    startAppear();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 function clear() {
     indexNo = 0;
     secondsRemaining = 60;
-contentOff();
-return;
+    contentOff();
+    return;
 
 }
 
 
 function strtQuiz() {
     contentOn();
-hiOff();
-startOff();
-quiz();
-clock();
+    hiOff();
+    startOff();
+    quiz();
+    clock();
 }
-    
 
 
 
 
 
 
-    function nextQ() {
 
-        indexNo++;
-        quiz();
-        console.log("next");
-        
+function nextQ() {
 
+    indexNo++;
+    quiz();
+
+}
+
+
+function checkA() {
+    if (questions[indexNo].correct === "a" && indexNo < arrLength) {
+
+        nextQ();
     }
+    else if (questions[indexNo].correct != "a") { secondsRemaining = secondsRemaining - 10; }
+    else if (questions[indexNo].correct === "a" && indexNo === arrLength) {
 
 
-    function checkA() {
-        if (questions[indexNo].correct === "a" && indexNo < arrLength) {
-
-            nextQ();
-        }
-        else if (questions[indexNo].correct != "a") { secondsRemaining = secondsRemaining - 10; }
-        else if (questions[indexNo].correct === "a" && indexNo === arrLength) {
-            
-            
-            dispOn();
-            clearInterval(myTimer);
-            contentOff();
-            return;
-
-        }
-       
-
-    }
-
-    function checkB() {
-        if (questions[indexNo].correct === "b" && indexNo < arrLength) {
-            nextQ();
-        }
-        else if (questions[indexNo].correct != "b") { secondsRemaining = secondsRemaining - 10; }
-        else { endScrn(); console.log("end display"); }
-        
-    }
-
-    function checkC() {
-        if (questions[indexNo].correct === "c" && indexNo < arrLength) {
-            nextQ();
-        }
-
-        else if (questions[indexNo].correct != "c") { secondsRemaining = secondsRemaining - 10; }
-        else { endScrn(); console.log("end display"); }
-        
-    }
-
-    function checkD() {
-        if (questions[indexNo].correct === "d" && indexNo < arrLength) {
-            nextQ();
-        }
-        else if (questions[indexNo].correct != "d") { secondsRemaining = secondsRemaining - 10; }
-        else {
-            endScrn();
-            
-
-    
-        }
+        dispOn();
+        clearInterval(myTimer);
+        contentOff();
         return;
+
     }
+
+
+}
+
+function checkB() {
+    if (questions[indexNo].correct === "b" && indexNo < arrLength) {
+        nextQ();
+    }
+    else if (questions[indexNo].correct != "b") { secondsRemaining = secondsRemaining - 10; }
+    else if (questions[indexNo].correct === "b" && indexNo === arrLength) {
+
+
+        dispOn();
+        clearInterval(myTimer);
+        contentOff();
+        return;
+
+    }
+
+}
+
+function checkC() {
+    if (questions[indexNo].correct === "c" && indexNo < arrLength) {
+        nextQ();
+    }
+
+    else if (questions[indexNo].correct != "c") { secondsRemaining = secondsRemaining - 10; }
+    else if (questions[indexNo].correct === "c" && indexNo === arrLength) {
+
+
+        dispOn();
+        clearInterval(myTimer);
+        contentOff();
+        return;
+
+    }
+
+}
+
+function checkD() {
+    if (questions[indexNo].correct === "d" && indexNo < arrLength) {
+        nextQ();
+    }
+    else if (questions[indexNo].correct != "d") { secondsRemaining = secondsRemaining - 10; }
+    else if (questions[indexNo].correct === "d" && indexNo === arrLength) {
+
+
+        dispOn();
+        clearInterval(myTimer);
+        contentOff();
+        return;
+
+    }
+}
 
 
 
