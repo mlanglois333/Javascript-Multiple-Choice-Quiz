@@ -12,238 +12,272 @@ var scoreBoard = document.getElementById("scoreBoard");
 var scoreTitle = document.getElementById("scoreTitle");
 var scoreContent = document.getElementById("scoreContent");
 let highScore = [];
-let indexNo = 0;
-let secondsRemaining = 60;
+
+
 
 var questions = [
-    { 
-        question: "q1",
-        
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d",
-       
+    {
+        question: "How many milliseconds are in a second?",
+
+        a: "1,000",
+        b: "100",
+        c: "10,000",
+        d: "1,000,000",
+
         correct: "a"
     },
-    { 
-        question: "q2",
-        
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d",
-        
+    {
+        question: "Which of the following terms is not used in a loop:",
+
+        a: "but",
+        b: "for",
+        c: "if",
+        d: "else",
+
         correct: "a"
     },
-    { 
-        question: "q3",
-        
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d",
-        
+    {
+        question: "Which of the following can be used to modify the appearance of a page",
+
+        a: "all of them",
+        b: "html",
+        c: "css",
+        d: "js",
+
         correct: "a"
     },
-    { 
-        question: "q4",
-        
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d",
-        
+    {
+        question: "Which is a term specific to an aspect of JavaScript:",
+
+        a: "hoisting",
+        b: "heaving",
+        c: "hoarding",
+        d: "horchata",
+
         correct: "a"
     },
-    { 
-        question: "q5",
-        
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d",
-        
+    {
+        question: "How long did it take to write the code for this quiz",
+
+        a: "What day is it now?",
+        b: "20 hours",
+        c: "30 hours",
+        d: "40 hours",
+
         correct: "a"
     }
 ];
-let arrLength = questions.length - 1 ;
+let arrLength = questions.length - 1;
 
 
 
 
 
 
-function endScrn() {  
- 
- var score = secondsRemaining;
-var scoreLength = highScore.length;
-
-
-var initials = prompt("Enter your initals");
-var addScr = initials + " -- " + score;
-
-function renderScore(){
-
-    for (i = 0; i <= scoreLength; i++) {
- scoreContent.append(highScore[i]);}
- 
-}
 
 
 
 
 
-highScore.push(addScr);
-renderScore();
-clear();
-console.log(highScore);
-strtBtn.innerHTML="<button> Click to start!</button";
-    strtBtn.addEventListener("click", function(){replay()});
+
+
+
+
+
+
+
+
+function clear() {
+    indexNo = 0;
     
 
-
-
+    questionEl.innerHTML = "";
+    answerA.innerHTML = "";
+    answerB.innerHTML = "";
+    answerC.innerHTML = "";
+    answerD.innerHTML = "";
+    console.log(clear);
 
 }
 
-function quiz() {
-    scoreContent.innerHTML = "";
-    strtBtn.innerHTML="";
-    let qu = questions[indexNo];
-    questionEl.innerHTML = "<p>" + qu.question + "</p>";
-    answerA.innerHTML = "<button>" +qu.a + "</button>";
-    answerB.innerHTML = "<button>" +qu.b + "</button>";
-    answerC.innerHTML = "<button>" +qu.c + "</button>";
-    answerD.innerHTML = "<button>" +qu.d + "</button>";
+
+function strtQuiz()
+ { 
+    let indexNo = 0; 
+    var secondsRemaining = 60;
     
-    console.log("quiz");
-}
+    var interval = setInterval(function () {
+
+        secondsRemaining--;
+
+        if (secondsRemaining <= 0) {
+            clearInterval(interval);
+            timerDisp.innerHTML = "";
+            questionEl.innerHTML = "Out of time, you LOSE!!!";
+            startAppear();
+
+            return;
+        }
+     
+
+
+        else {
+            timerDisp.innerHTML = secondsRemaining;
+            console.log("Timer --> " + secondsRemaining);
+        }
+    }
+    
+     , 1000);
 
 
 
-
-function nextQ(){
-
-    indexNo++;
-    quiz();
-    console.log("next");
-}
-
-
-function timer() {
-
+     function quiz() {
+    
  
-
-
-
-
-
-setInterval(function() {
-if (secondsRemaining > 0) { 
-    timerDisp.textContent = secondsRemaining + " seconds remaining"; 
-    secondsRemaining--;}
-    else {
-        alert("Time is up, you lose :(");
-        replay();
-
+    
+    
+   
+        strtBtn.innerHTML = "";
+        let qu = questions[indexNo];
+        questionEl.innerHTML = "<p>" + qu.question + "</p>";
+        answerA.innerHTML = "<button>" + qu.a + "</button>";
+        answerB.innerHTML = "<button>" + qu.b + "</button>";
+        answerC.innerHTML = "<button>" + qu.c + "</button>";
+        answerD.innerHTML = "<button>" + qu.d + "</button>";
+    
     
     }
-},
-    1000); 
-    console.log("timer");
-}
-
-
-
-
-
-
-function checkA(){
-    if (questions[indexNo].correct === "a" && indexNo < arrLength ) {
-        nextQ();
-    }
-    else if (questions[indexNo].correct != "a") {secondsRemaining = secondsRemaining-10;}
-    else {endScrn(); 
-        
-        console.log("end display");}
-    console.log("a");
     
-}
-
-function checkB(){
-        if (questions[indexNo].correct === "b" && indexNo < arrLength ) {
+    
+    
+    
+    function nextQ() {
+    
+        indexNo++;
+        quiz();
+        console.log("next");
+    }
+    
+    
+    
+    function checkA() {
+        if (questions[indexNo].correct === "a" && indexNo < arrLength) {
+           
             nextQ();
         }
-        else if (questions[indexNo].correct != "b") {secondsRemaining = secondsRemaining-10;}
-        else {endScrn(); console.log("end display");}
+        else if (questions[indexNo].correct != "a") { secondsRemaining = secondsRemaining - 10; }
+        else {
+            endScrn();
+            clearInterval(interval);
+    
+            console.log("end display");
+        }
+        console.log("a");
+    
+    }
+    
+    function checkB() {
+        if (questions[indexNo].correct === "b" && indexNo < arrLength) {
+            nextQ();
+        }
+        else if (questions[indexNo].correct != "b") { secondsRemaining = secondsRemaining - 10; }
+        else { endScrn(); console.log("end display"); }
         console.log("b");
     }
+    
+    function checkC() {
+        if (questions[indexNo].correct === "c" && indexNo < arrLength) {
+            nextQ();
+        }
+    
+        else if (questions[indexNo].correct != "c") { secondsRemaining = secondsRemaining - 10; }
+        else { endScrn(); console.log("end display"); }
+        console.log("c");
+    }
+    
+    function checkD() {
+        if (questions[indexNo].correct === "d" && indexNo < arrLength) {
+            nextQ();
+        }
+        else if (questions[indexNo].correct != "d") { secondsRemaining = secondsRemaining - 10; }
+        else {
+            endScrn();
+            console.log("end display");
+        }
+    }
+    
 
-function checkC(){
-            if (questions[indexNo].correct === "c" && indexNo < arrLength ) {
-                nextQ();
+    function endScrn() {
+
+        var score = secondsRemaining;
+        var scoreLength = highScore.length;
+    
+    
+        var initials = prompt("Enter your initals");
+        var addScr = initials + " -- " + score;
+     
+        function renderScore() {
+    
+            for (i = 0; i <= scoreLength; i++) {
+                scoreContent.append(highScore[i]);
             }
-        
-            else if (questions[indexNo].correct != "c") {secondsRemaining = secondsRemaining - 10;}
-            else {endScrn(); console.log("end display");}
- console.log("c");       }
-        
-function checkD(){
-                if (questions[indexNo].correct === "d" && indexNo < arrLength ) {
-                    nextQ();
-                }
-                else if (questions[indexNo].correct != "d") {secondsRemaining = secondsRemaining - 10;}
-                else {endScrn();
-                    console.log("end display");}
-            }
+    
+        }
+      
+    
+    
+    
+    
+        highScore.push(addScr);
+        renderScore();
+       clear();
+        console.log(highScore);
+    startAppear();
+      console.log(secondsRemaining);
+    
+    
+    
+    
+    }
+    
+
+
+quiz();
+
+
+
+
+
+
+
+
+
+
+
+    answerA.addEventListener("click", function () { checkA() });
+    answerB.addEventListener("click", function () { checkB() });
+    answerC.addEventListener("click", function () { checkC() });
+    answerD.addEventListener("click", function () { checkD() });
+
+
+
+
+}
+
+function startAppear() {
+    strtBtn.innerHTML = "<button> Click to start!</button";
+
    
 
 
-
-
-function displaySc(){
-            scoreDisp.innerHTML = "<p> current score: " + score + "</p>";}
-
-
-
-     function clear(){
-         indexNo= 0;
-                secondsRemaining = 60;
-                score = 60;
-                questionEl.innerHTML = "";
-                answerA.innerHTML = "";
-                answerB.innerHTML = "";
-                answerC.innerHTML = "";
-                answerD.innerHTML = "";
-                console.log(clear);
-                
-            }
-
-            function replay() {
-                var tryAg = confirm("Try again?");
-                if (tryAg === true) {restart();}
-                else {alert("Thank you for playing!");
-                }
-                
-                
-                }
-            
-function restart(){
-    clear();
-    quiz();
-}
-
-function startAppear(){
-    strtBtn.innerHTML="<button> Click to start!</button";
-    strtBtn.addEventListener("click", function(){quiz()});
-    strtBtn.addEventListener("click", function(){timer()});
 }
 
 
 
-answerA.addEventListener("click", function(){checkA()});
-answerB.addEventListener("click", function(){checkB()});
-answerC.addEventListener("click", function(){checkC()});
-answerD.addEventListener("click", function(){checkD()});
-window.onload= startAppear();
+
+startAppear();
+
+
+
+ strtBtn.addEventListener("click", function () { strtQuiz() });
+startAppear();
