@@ -12,8 +12,8 @@ var scoreBoard = document.getElementById("scoreBoard");
 var formEl = document.getElementById("formEl");
 var scoreContent = document.getElementById("scoreContent");
 let highScore = [];
-let indexNo = 0; 
-let  x = true;
+let indexNo = 0;
+let x = false;
 
 var questions = [
     {
@@ -67,43 +67,109 @@ var questions = [
         correct: "a"
     }
 ];
+
+
 let arrLength = questions.length - 1;
 let secondsRemaining = 60;
 
 
 
-function endScrn() {
+var myTimer;
+   function clock() {
+     myTimer = setInterval(myClock, 1000);
+     
 
+     function myClock() {
+       timerDisp.innerHTML=secondsRemaining; 
+       --secondsRemaining;
+       if (secondsRemaining <= 0) {
+         clearInterval(myTimer);
+         alert("Reached zero");
+       }
+     }
+   }  
+
+
+
+
+
+
+
+function quiz(){
+let qu = questions[indexNo];
+
+questionEl.innerHTML = "<p>" + qu.question + "</p>";
+answerA.innerHTML =  qu.a  ;
+answerB.innerHTML =  qu.b ;
+answerC.innerHTML = qu.c  ;
+answerD.innerHTML = qu.d ;
+}
+
+function startAppear() {
+    strtBtn.style.visibility = "visible";
+
+}
+function startOff(){
+strtBtn.style.visibility = "hidden";}
+
+function dispOff() {
+    formEl.style.visibility = "hidden";}
+
+    function hiOff(){
+    scoreContent.style.visibility = "hidden";}
+
+function dispOn() {
+    formEl.style.visibility = "visible";
+    scoreContent.style.visibility = "visible";
+}
+
+function contentOn() {
+
+    questionEl.style.visibility = "visible";
+    answerA.style.visibility = "visible";
+    answerB.style.visibility = "visible";
+    answerC.style.visibility = "visible";
+    answerD.style.visibility = "visible";
+}
+function contentOff() {
+
+    questionEl.style.visibility = "hidden";
+    answerA.style.visibility = "hidden";
+    answerB.style.visibility = "hidden";
+    answerC.style.visibility = "hidden";
+    answerD.style.visibility = "hidden";
+}
+
+
+
+
+
+
+
+function renderScore() {
+
+    var initials = document.getElementById("initials").value;
     var score = secondsRemaining;
     var scoreLength = highScore.length;
 
 
-    var initials = prompt("Enter your initals");
+
     var addScr = initials + " -- " + score;
- 
-    function renderScore() {
-
-        for (i = 0; i <= scoreLength; i++) {
-            scoreContent.append(highScore[i]);
-        }
-
-    }
-  
-
-
-
-
     highScore.push(addScr);
-    renderScore();
-   clear();
-    console.log(highScore);
+
+
+    for (i = 0; i <= scoreLength; i++) {
+        scoreContent.append(highScore[i]);
+    }
+dispOff();
+clear();
 startAppear();
-  console.log(secondsRemaining);
-
-
-
-
 }
+
+
+
+
+
 
 
 
@@ -120,97 +186,55 @@ startAppear();
 
 function clear() {
     indexNo = 0;
-    
-
-    questionEl.innerHTML = "";
-    answerA.innerHTML = "";
-    answerB.innerHTML = "";
-    answerC.innerHTML = "";
-    answerD.innerHTML = "";
-    console.log(clear);
+    secondsRemaining = 60;
+contentOff();
+return;
 
 }
 
 
-function strtQuiz()
- { 
-
-     
+function strtQuiz() {
+    contentOn();
+hiOff();
+startOff();
+quiz();
+clock();
+}
     
-    secondsRemaining = 60;
-    
-    var interval = setInterval(function () {
-
-        secondsRemaining--;
-
-        if (secondsRemaining <= 0) {
-            clearInterval(interval);
-            timerDisp.innerHTML = "";
-            questionEl.innerHTML = "Out of time, you LOSE!!!";
-            startAppear();
-
-            return;
-        }
-     
-
-
-        else {
-            timerDisp.innerHTML = secondsRemaining;
-            console.log("Timer --> " + secondsRemaining);
-        }
-    }
-    
-     , 1000);
 
 
 
-     function quiz() {
-    
-     
-    
-    
-   
-        strtBtn.innerHTML = "";
-        let qu = questions[indexNo];
-        questionEl.innerHTML = "<p>" + qu.question + "</p>";
-        answerA.innerHTML = "<button>" + qu.a + "</button>";
-        answerB.innerHTML = "<button>" + qu.b + "</button>";
-        answerC.innerHTML = "<button>" + qu.c + "</button>";
-        answerD.innerHTML = "<button>" + qu.d + "</button>";
-    
-    
-    }
-    
-    
-    
-    
+
+
+
     function nextQ() {
-    
+
         indexNo++;
         quiz();
         console.log("next");
+        
+
     }
-    
-    
-    
+
+
     function checkA() {
         if (questions[indexNo].correct === "a" && indexNo < arrLength) {
-           
+
             nextQ();
         }
         else if (questions[indexNo].correct != "a") { secondsRemaining = secondsRemaining - 10; }
-        else if (questions[indexNo].correct === "a" && indexNo === arrLength){
+        else if (questions[indexNo].correct === "a" && indexNo === arrLength) {
             x = false;
             console.log(x)
-            endScrn();
-            clearInterval(interval);
+            dispOn();
+            clearInterval(myTimer);
             return;
-         
+
         }
         console.log("a");
-    
+
     }
-    
+
     function checkB() {
         if (questions[indexNo].correct === "b" && indexNo < arrLength) {
             nextQ();
@@ -219,17 +243,17 @@ function strtQuiz()
         else { endScrn(); console.log("end display"); }
         console.log("b");
     }
-    
+
     function checkC() {
         if (questions[indexNo].correct === "c" && indexNo < arrLength) {
             nextQ();
         }
-    
+
         else if (questions[indexNo].correct != "c") { secondsRemaining = secondsRemaining - 10; }
         else { endScrn(); console.log("end display"); }
         console.log("c");
     }
-    
+
     function checkD() {
         if (questions[indexNo].correct === "d" && indexNo < arrLength) {
             nextQ();
@@ -238,53 +262,23 @@ function strtQuiz()
         else {
             endScrn();
             console.log("end display");
+
+    
         }
+        return;
     }
-    
-function firstEvnt(){
- 
-    if (x === false) {return}
-else { answerA.addEventListener("click", function () { checkA() });
-answerB.addEventListener("click", function () { checkB() });
-answerC.addEventListener("click", function () { checkC() });
-answerD.addEventListener("click", function () { checkD() });
-x =false;
-}
-}
 
-quiz();
-firstEvnt();
+
+  
 
 
 
-
-
-    
-
-
-
-
-
-
-
-
-
-}
-
-
-function startAppear() {
-    strtBtn.innerHTML = "<button> Click to start!</button";
-
-   
-
-
-}
 
 
 
 
 startAppear();
+dispOff();
+hiOff();
+contentOff();
 
-
-
- strtBtn.addEventListener("click", function () { strtQuiz() });

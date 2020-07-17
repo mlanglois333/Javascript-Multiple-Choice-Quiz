@@ -1,58 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Javascript Quiz</title>
-    <link rel="stylesheet" href="style.css" />
-   
-  </head>
-  <body>
 
-    <div class="jumbotron">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Javascript Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+
+  <div class="jumbotron">
     <h1 class="text-center">Javascript Quiz</h1>
-    </div>
- 
-    <div id="strtBtn"></div>
-    <div id="scoreContent"></div>
-
-
-
-
-
-<div id="score"></div>
-
-
-        <div id="timer"> </div>
-
-<div class= "scoreBoard"></div>
+    <button id="strtBtn" onclick="strtQuiz()">Click here to start!</button> 
+    <div id="timer"> </div>
+  </div>
 
   
+  <div id="scoreContent"><h2>High Scores:</h2><br></div>
 
-    <div id="main"></div>
-      
-        <div id="questions"></div>
-        <div class="card-body text-center" id="answers">
-            <div class="answer" id="a" ></div>
-            <div class="answer" id="b" ></div>
-            <div class="answer" id="c" ></div>
-            <div class="answer" id="d" ></div>
-      
-    
+
+
+
+
+  <div id="score"></div>
+
+
+ 
+
+  <div class="scoreBoard"></div>
+
+
+
+  <div id="main"></div>
+
+  <div id="questions"></div>
+  <div id="answers"></div>
+  <button class="answer" id="a" onclick="checkA()"></button>
+  <button class="answer" id="b" onclick="checkB()"></button>
+  <button class="answer" id="c" onclick="checkC()"></button>
+  <button class="answer" id="d" onclick="checkD()"></button>
+<div id="formEl">
+
+  <form>
+    <div class="form-group">
+      <input name= "initials" type="text" class="form-control" id="initials" placeholder="Enter name for high score!"/>
     </div>
+    <button type="button" class="btn btn-primary" id="submitBtn" onclick="renderScore()">Submit</button>
+  </form>
+
 </div>
 
-   
 
-</div>
-</div>
 
-    
 
-    
 
-    <script src="script.js"></script>
-  </body>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
