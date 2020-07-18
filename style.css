@@ -3,5 +3,7 @@
 
 #timer {font-weight: bolder;}
 #scoreContent {font-weight: bolder}
-.answers {font-style: italic;
-text-decoration-color: darkslategray;}
+#questions {font-style: italic;
+text-decoration-color: darkslategray;
+}
+#answers {text-align: center;}

@@ -78,7 +78,7 @@ function clock() {
 
 
     function myClock() {
-        timerDisp.innerHTML = secondsRemaining;
+        timerDisp.innerHTML = secondsRemaining + " seconds remaining";
         --secondsRemaining;
         if (secondsRemaining <= 0) {
             clearInterval(myTimer);
