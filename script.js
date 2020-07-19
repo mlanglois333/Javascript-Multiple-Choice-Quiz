@@ -17,32 +17,32 @@ var questions = [
     {
         question: "How many milliseconds are in a second?",
 
-        a: "1,000",
+        a: "10,000",
         b: "100",
-        c: "10,000",
+        c: "1000",
         d: "1,000,000",
 
-        correct: "a"
+        correct: "c"
     },
     {
-        question: "Which of the following terms is not used in a loop:",
+        question: "Which of the following terms is not used in JavaScript:",
 
-        a: "but",
-        b: "for",
+        a: "else",
+        b: "but",
         c: "if",
-        d: "else",
+        d: "for",
 
-        correct: "a"
+        correct: "b"
     },
     {
         question: "Which of the following can be used to modify the appearance of a page",
 
-        a: "all of them",
+        a: "JavaScript",
         b: "html",
         c: "css",
-        d: "js",
+        d: "all of them",
 
-        correct: "a"
+        correct: "d"
     },
     {
         question: "Which is a term specific to an aspect of JavaScript:",
@@ -57,12 +57,12 @@ var questions = [
     {
         question: "How long did it take to write the code for this quiz",
 
-        a: "What day is it now?",
-        b: "20 hours",
-        c: "30 hours",
-        d: "40 hours",
+        a: "20 hours",
+        b: "30 hours",
+        c: "40 hours",
+        d: "What day is it?",
 
-        correct: "a"
+        correct: "d"
     }
 ];
 
@@ -82,7 +82,7 @@ function clock() {
         --secondsRemaining;
         if (secondsRemaining <= 0) {
             clearInterval(myTimer);
-            alert("Time is up! You LOSE!!");
+            alert("Time is up! Better luck next time!");
             clear();
             startAppear();
 
