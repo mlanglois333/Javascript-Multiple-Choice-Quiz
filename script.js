@@ -1,19 +1,19 @@
-var timerDisp = document.getElementById("timer");
-var strtBtn = document.getElementById("strtBtn");
-var questionEl = document.getElementById("questions");
-var answers = document.getElementById("answers");
-var answerA = document.getElementById("a");
-var answerB = document.getElementById("b");
-var answerC = document.getElementById("c");
-var answerD = document.getElementById("d");
-var formEl = document.getElementById("formEl");
-var scoreContent = document.getElementById("scoreContent");
-var submitBtn = document.getElementById("submitBtn");
+const timerDisp = document.getElementById("timer");
+const strtBtn = document.getElementById("strtBtn");
+const questionEl = document.getElementById("questions");
+const answers = document.getElementById("answers");
+const answerA = document.getElementById("a");
+const answerB = document.getElementById("b");
+const answerC = document.getElementById("c");
+const answerD = document.getElementById("d");
+const formEl = document.getElementById("formEl");
+const scoreContent = document.getElementById("scoreContent");
+const submitBtn = document.getElementById("submitBtn");
 let highScore = [];
 let indexNo = 0;
 
 
-var questions = [
+const questions = [
     {
         question: "How many milliseconds are in a second?",
 
