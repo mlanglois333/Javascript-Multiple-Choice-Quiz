@@ -1,9 +1,7 @@
 # Javascript-Multiple-Choice-Quiz
 
-JAVASCRIPT MULTIPLE CHOICE QUIZ
+This is an example of how to build a multiple choice quiz using vanilla javascript!
+The content of the page is rendered dynamically and features use of a timer, leaderboard, and local storage.
 
-This is written using only vanilla JavaScript and most elements are 
-created dynamicly through the script.js file. 
 
-The program meets all of the stated criteria and has a scoreboard that is sorted from highest to lowest.
-
+### Marc Langlois || MIT License || 2020
